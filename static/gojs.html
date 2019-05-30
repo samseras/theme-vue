@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+     *{
+       padding: 0;
+       margin: 0;
+     }
+    #myDiagramDiv{
+      width: 400px;
+      height: 400px;
+      border: 2px solid #ccc;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<script src="./te.js"></script>
+<script>
+  var arr =
+      [
+        {key: '张三', text: '张三'},
+        {key: '吴六', text: '吴六'},
+        {key: '赵七', text: '赵七'},
+        {key: '王五', text: '王五'},
+        {key: '李四', text: '李四'}]
+
+  function init () {
+    var $ = go.GraphObject.make;
+    // myDiagram = $(go.Diagram, 'myDiagramDiv');
+    // // myDiagram.model = $(go.Model);
+    // myDiagram.model = $(go.GraphLinksModel);
+    // myDiagram.model.nodeDataArray = arr;
+    // myDiagram.model.linkDataArray = [
+    //   {to: '张三', from: '李四'},
+    //   {to: '吴六', from: '李四'}
+    // ];
+    // myDiagram.addDiagramListener("ObjectDoubleClicked", function(e, node) {
+    //   console.log(e.subject.part, e, node)
+    // }) // 页面元素点击事件，但是不知道点击了什么
+    // myDiagram.addDiagramListener("SelectionMoved", function(e, node) {
+    //   console.log(e.subject.part, e, node)
+    // }) // 页面元素移动事件，但是不知道点击了什么
+    // myDiagram.addDiagramListener("LinkDrawn", function(e, node) {
+    //   console.log(e.subject.part, e, node)
+    // }) // 页面元素点击事件，但是不知道点击了什么
+
+
+    // myDiagram.nodeTemplate =
+    //   $(go.Node,"Horizontal",//节点子元素布局定义
+    //     $(go.Panel,//节点面板定义
+    //       "Auto", //节点面板子元素布局定义
+    //       $(go.Shape,//节点形状
+    //         //形状的基础属性设置，如下背景颜色
+    //         { fill: "#1F4963" }
+    //         ,new go.Binding("fill", "color")//
+    //       ),
+    //       {doubleClick : function(e, node){
+    //           // 双击事件,输出节点数据
+    //           console.log(node);
+    //         },
+    //         cursor:"pointer"//改变鼠标样式变成小手
+    //       }
+    //     )//Panel块
+    //   )
+
+
+    // myDiagram.layout = $(go.CircularLayout);
+    // myDiagram.add(
+    //   // $(go.Part, 'Vertical',
+    //   // $(go.Part, 'Position',
+    //   $(go.Part, 'Horizontal',
+    //     $(go.Shape, 'RoundedRectangle', {fill: 'red'}),
+    //     $(go.TextBlock, '文字',
+    //       {
+    //         background: 'red',
+    //         editable: true,
+    //         alignment: go.Spot.Top,
+    //         stretch: go.GraphObject.Fill,
+    //         textAlign: 'center',
+    //         verticalAlignment: go.Spot.Center
+    //       }
+    //       )
+    //   )
+    // )
+
+
+
+  /************
+   **/
+
+
+  const portDiagram = $(go.Diagram, 'myDiagramDiv', {
+    'initialContentAlignment': go.Spot.Center,
+    'undoManager.isEnabled': true
+  })
+
+// 指定被创建的连接线的模板
+    portDiagram.linkTemplate = $(go.Link,
+      $(go.Shape, { stroke: 'black', strokeWidth: 2 })
+    )
+
+// 指定被创建的节点的模板
+    portDiagram.nodeTemplate = $(go.Node,
+      // new go.Binding('position'),
+
+      $(go.Shape,
+        {
+          fill: 'red',
+          fromLinkable: true,
+          toLinkable: true
+        },
+        new go.Binding('portId', 'key')
+      )
+    )
+
+    portDiagram.model = new go.GraphLinksModel(
+      [
+        {
+          key: '1',
+          position: new go.Point(300, 0)
+        },
+        {
+          key: '2',
+          position: new go.Point(0, 0)
+        },
+        {
+          key: '3',
+          position: new go.Point(0, 0)
+        }
+      ]
+    )
+
+   /*** *****/
+  }
+</script>
+<body onload="init()">
+  <div id="myDiagramDiv"></div>
+<button class="add" >添加</button>
+<button class="adds" >连接</button>
+</body>
+<script>
+  document.querySelector('.add').onclick=function () {
+    var CreateNode={
+      key: '新的', //设置key的方法，每个节点最好是有自己独立的key
+      "category":"nodeStyleOne", //节点样式选择 nodeStyleOne  => 你自己定义的样式名
+      "loc":"",
+      "text":"节点的text值",//也阔以是动态的值   
+  }
+    myDiagram.model.addNodeData(CreateNode);
+  }
+  document.querySelector('.adds').onclick = function () {
+    myDiagram.model.addLinkData({from: '张三', to: '新的',});
+  }
+</script>
+</html>

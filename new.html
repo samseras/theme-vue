@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .fieldsBox,.searchCondBox{
+      width: 100%;
+      height: 45%;
+      margin: 10px auto;
+      padding: 5px 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+    }
+    .searchCondBox{
+      margin-bottom: 0;
+      padding: 0;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="fieldsBox" ></div>
+  <div class="searchCondBox"></div>getFieldsCnName
+</body>
+</html>
+
+
+
+{
+"tables": [
+{
+"id": "abcd",
+"tableName" : "HELLO",
+"alias":"A",
+"fields":["ID", "NAME", "AGE"]
+},
+{
+"id": "abcd",
+"tableName" : "WORLD",
+"alias":"B",
+"fields":["ID", "ADDRESS", "WORK"]
+}],
+
+"joins" : [
+{"left":"HELLO", "leftField":"ID","joinType":"INNER_JOIN", "right":"WORLD", "rightField":"ID"}
+],
+"conds":[
+{
+"tableName":"",
+"fieldName":"",
+"type":"string",
+"opera":"=",
+"value":"",
+"cond":"and"
+}
+]
+}
+
+
+
+{
+"tables": [
+{
+"id": "abcd",
+"tableName" : "HELLO",
+"alias":"A",
+"fields":["ID", "NAME", "AGE"]
+},
+{
+"id": "abcd",
+"tableName" : "WORLD",
+"alias":"B",
+"fields":["ID", "ADDRESS", "WORK"]
+}],
+fieldsInfo:[
+{"id":"g0ba14899f124ed583f1727ea5efcd88", "name":"NAME", "type":"varchar", "length":50, "nullable":"YES", "numPrecision":10, "numScale":0},
+{"id":"g0ba14899f124ed583f1727ea5efcd88", "name":"ID",   "type":"varchar", "length":50, "nullable":"YES", "numPrecision":10, "numScale":0}
+],
+"joins" : [
+{"left":"HELLO", "leftField":"ID","joinType":"INNER_JOIN", "right":"WORLD", "rightField":"ID"},
+
+],
+"conds":[
+{
+"tableName":"",
+"fieldName":"",
+"type":"string",
+"opera":"=",
+"value":"",
+"cond":"and"
+}
+]
+}
+
+---
+下面信息是 字段对应 json 中的列名
+
+id: allShows[j]. => instanceId
+name: allShows[j]. => instanceCode
+type: allShows[j]. => string8
+length: allShows[j]. => string5
+nullable: allShows[j]. => string4
+numPrecision: allShows[j]. => string6;
+numScale: allShows[j]. => string7;
+allFields
+
+if (treeData[i].text == '通用信息' && tabs[j].instanceName == '按用户归属地划分') {
+flag = true
+} else if (treeData[i].text == '基本信息' && tabs[j].instanceName == '业务属性') {
+flag = true
+} else if (treeData[i].text == '消费价值' && tabs[j].instanceName == '消费信息') {
+flag = true
+} else if (treeData[i].text == '套餐信息' && tabs[j].instanceName == '积分信息') {
+flag = true
+} else if (treeData[i].text == '消费价值' && tabs[j].instanceName == '套餐品牌') {
+flag = true
+}
+if (flag) {
+
+}
+
+
+
+
+
+
